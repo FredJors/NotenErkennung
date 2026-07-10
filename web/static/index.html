@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NotenErkennung</title>
+  <link rel="stylesheet" href="style.css?v=5">
+  <script src="vendor/opensheetmusicdisplay.min.js"></script>
+</head>
+<body>
+  <aside id="sidebar">
+    <h1>🎹 NotenErkennung</h1>
+    <p class="subtitle">MP3 → Klaviernoten</p>
+
+    <label id="upload-label" class="button primary">
+      ⬆ Song hochladen
+      <input type="file" id="upload-input" accept=".mp3,.wav,.flac,.ogg,.m4a" hidden>
+    </label>
+
+    <h2>Songs</h2>
+    <ul id="song-list"></ul>
+    <p class="hint">Du kannst MP3s auch direkt in den Projektordner legen.</p>
+    <p class="hint" id="version-tag">App-Version: alt (bitte Strg+F5 drücken)</p>
+  </aside>
+
+  <main id="main">
+    <div id="empty-state">
+      <p>⬅ Wähle links einen Song aus oder lade einen hoch.</p>
+    </div>
+
+    <div id="progress-view" hidden>
+      <h2 id="progress-title"></h2>
+      <div class="progress-bar"><div id="progress-fill"></div></div>
+      <p id="progress-message"></p>
+      <p class="hint">Die Instrumententrennung ist der längste Schritt (einige Minuten).</p>
+    </div>
+
+    <div id="song-view" hidden>
+      <div id="song-header">
+        <div>
+          <h2 id="song-title"></h2>
+          <p id="song-meta"></p>
+        </div>
+        <div id="controls">
+          <button id="btn-play" class="button primary">▶ Abspielen</button>
+          <button id="btn-stop" class="button">⏹ Stopp</button>
+          <button id="btn-test" class="button" title="Spielt zwei kurze Klaviertöne, um den Klang zu prüfen">🔊 Testton</button>
+          <label class="control-inline">Fassung
+            <select id="variant-select">
+              <option value="original">Original</option>
+              <option value="einfach">Vereinfacht</option>
+            </select>
+          </label>
+          <label class="control-inline">Tempo
+            <input type="range" id="tempo-slider" min="30" max="120" value="100">
+            <span id="tempo-value">100 %</span>
+          </label>
+          <label class="control-inline"><input type="checkbox" id="chk-right" checked> Rechte Hand</label>
+          <label class="control-inline"><input type="checkbox" id="chk-left" checked> Linke Hand</label>
+          <label class="control-inline"><input type="checkbox" id="chk-cursor" checked> Positionslinie</label>
+          <span class="spacer"></span>
+          <button id="btn-pdf" class="button">🖨 Als PDF speichern</button>
+          <a id="btn-midi" class="button" download>⬇ MIDI</a>
+          <a id="btn-xml" class="button" download>⬇ MusicXML</a>
+        </div>
+      </div>
+      <div id="sheet"></div>
+    </div>
+  </main>
+
+  <script src="app.js?v=5"></script>
+</body>
+</html>
